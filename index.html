@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Awais Ahmad — AI/ML Developer</title>
+<meta name="description" content="Portfolio of Awais Ahmad — AI/ML developer building applied machine learning systems: recommendation engines, retrieval, and IoT-integrated apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F5F8;
+    --paper-raised: #FFFFFF;
+    --ink: #10182B;
+    --muted: #5B6478;
+    --line: #D8DCE5;
+    --signal: #2F6FED;
+    --signal-soft: #E8EFFE;
+    --cluster: #F2A93B;
+    --cluster-soft: #FDF0DB;
+    --radius: 14px;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-display);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  .skip-link {
+    position: absolute; left: -999px; top: 0; background: var(--ink); color: white;
+    padding: 10px 16px; border-radius: 8px; z-index: 100;
+  }
+  .skip-link:focus { left: 20px; top: 20px; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(243, 245, 248, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.05rem; }
+  .brand-mark {
+    width: 30px; height: 30px; border-radius: 8px; background: var(--ink);
+    color: var(--paper); display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600;
+  }
+  .nav-links { display: flex; gap: 28px; font-size: 0.92rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink); color: var(--paper); padding: 9px 18px; border-radius: 8px;
+    font-size: 0.88rem; font-weight: 500;
+  }
+  .nav-cta:hover { background: var(--signal); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 72px 0 56px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 0.78rem; color: var(--signal);
+    background: var(--signal-soft); padding: 6px 12px; border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--signal); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  h1 {
+    font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+    line-height: 1.08;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  h1 .accent { color: var(--signal); }
+
+  .hero-sub { color: var(--muted); font-size: 1.08rem; max-width: 46ch; margin-bottom: 28px; }
+  .hero-sub a { color: var(--ink); border-bottom: 1px solid var(--line); }
+  .hero-sub a:hover { border-color: var(--signal); color: var(--signal); }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
+  .btn-primary {
+    background: var(--ink); color: var(--paper); padding: 13px 22px; border-radius: 9px;
+    font-size: 0.94rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary:hover { background: var(--signal); transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1px solid var(--line); padding: 13px 22px; border-radius: 9px; font-size: 0.94rem;
+    font-weight: 500; transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .btn-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  .stat-row { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat .num { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 600; color: var(--ink); }
+  .stat .label { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+  /* Signature: clustering canvas */
+  .cluster-frame {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px; box-shadow: 0 1px 2px rgba(16,24,43,0.04);
+  }
+  .cluster-frame-header {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-bottom: 12px;
+  }
+  canvas#clusterCanvas { width: 100%; height: 280px; display: block; border-radius: 8px; background: var(--paper); }
+  .cluster-caption { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 10px; text-align: center; }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 64px 0; border-top: 1px solid var(--line); }
+  .section-head { margin-bottom: 40px; max-width: 60ch; }
+  .section-eyebrow { font-family: var(--font-mono); font-size: 0.78rem; color: var(--signal); margin-bottom: 10px; }
+  .section-title { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .section-desc { color: var(--muted); font-size: 1rem; }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid; grid-template-columns: 140px 1fr; gap: 24px;
+    padding: 26px 0; border-top: 1px solid var(--line);
+  }
+  .timeline-item:first-child { border-top: none; }
+  .timeline-date { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); padding-top: 3px; }
+  .timeline-role { font-size: 1.12rem; font-weight: 600; margin-bottom: 8px; }
+  .timeline-role span { color: var(--muted); font-weight: 400; }
+  .timeline-desc { color: var(--muted); font-size: 0.96rem; margin-bottom: 12px; max-width: 65ch; }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line); padding: 4px 10px; border-radius: 6px;
+  }
+  @media (max-width: 640px) { .timeline-item { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* ---------- Projects ---------- */
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+  .filter-btn {
+    font-family: var(--font-mono); font-size: 0.78rem; padding: 7px 14px; border-radius: 20px;
+    border: 1px solid var(--line); color: var(--muted); background: transparent; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .filter-btn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 900px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .project-grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px; display: flex; flex-direction: column; transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(16,24,43,0.07); }
+  .card.hidden { display: none; }
+
+  .card-icon {
+    width: 42px; height: 42px; border-radius: 10px; background: var(--signal-soft);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    font-family: var(--font-mono); font-size: 0.9rem; color: var(--signal); font-weight: 600;
+  }
+  .card.featured .card-icon { background: var(--cluster-soft); color: var(--cluster); }
+  .card-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+  .card-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 16px; flex-grow: 1; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .card-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); background: var(--paper); padding: 3px 8px; border-radius: 5px; }
+  .card-link { font-size: 0.86rem; font-weight: 500; color: var(--signal); display: inline-flex; align-items: center; gap: 5px; }
+  .card-link:hover { gap: 8px; }
+  .card-badge {
+    position: absolute; margin-top: -38px; margin-left: 0; font-family: var(--font-mono);
+    font-size: 0.66rem; background: var(--cluster); color: var(--ink); padding: 3px 8px; border-radius: 5px;
+    align-self: flex-start; margin-bottom: 8px;
+  }
+
+  .card-media {
+    width: 100%; aspect-ratio: 16/9; border-radius: 10px; overflow: hidden;
+    margin-bottom: 16px; background: var(--ink); position: relative;
+  }
+  .card-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card-media::after {
+    content: '▶'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 1.4rem; background: rgba(16,24,43,0.25); opacity: 1; transition: opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .card-media.playing::after { opacity: 0; }
+
+  /* ---------- Research ---------- */
+  .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 760px) { .research-grid { grid-template-columns: 1fr; } }
+  .research-card {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px; display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start;
+  }
+  @media (max-width: 640px) { .research-card { grid-template-columns: 1fr; } }
+  .research-icon {
+    width: 44px; height: 44px; border-radius: 10px; background: var(--cluster-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .research-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+  .research-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; }
+  .research-desc { color: var(--muted); font-size: 0.94rem; }
+
+  /* ---------- Toolkit ---------- */
+  .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 760px) { .toolkit-grid { grid-template-columns: 1fr; } }
+  .toolkit-col h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.78rem; }
+  .toolkit-list { display: flex; flex-direction: column; gap: 10px; }
+  .toolkit-list li { list-style: none; font-size: 0.96rem; display: flex; align-items: center; gap: 10px; }
+  .toolkit-list li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--signal); flex-shrink: 0; }
+
+  /* ---------- Contact ---------- */
+  .contact-section { text-align: center; }
+  .contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .contact-link {
+    border: 1px solid var(--line); padding: 12px 20px; border-radius: 9px; font-size: 0.92rem;
+    display: inline-flex; align-items: center; gap: 8px; transition: all 0.15s ease;
+  }
+  .contact-link:hover { border-color: var(--signal); color: var(--signal); transform: translateY(-1px); }
+
+  footer { text-align: center; padding: 32px 0; color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><span class="brand-mark">AA</span> Awais Ahmad</div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#contact" class="nav-cta">Hire me</a>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="hero" style="border-top: none;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Open to AI/ML & applied engineering roles</div>
+        <h1>I turn raw data into <span class="accent">decisions systems can act on.</span></h1>
+        <p class="hero-sub">
+          Computer Science undergraduate majoring in AI &amp; Machine Learning at
+          University of Central Punjab. I build applied ML systems —
+          retrieval, recommendation, clustering, on-device inference — and ship them as working apps, not notebooks.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">See the projects →</a>
+          <a href="Awais_Ahmad_Resume.pdf" class="btn-secondary" id="resume-link">Download resume ↓</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="num">9+</div><div class="label">ML apps shipped</div></div>
+          <div class="stat"><div class="num">0.94</div><div class="label">R² — best model</div></div>
+          <div class="stat"><div class="num">2</div><div class="label">IEEE papers</div></div>
+        </div>
+      </div>
+      <div class="cluster-frame">
+        <div class="cluster-frame-header">
+          <span>live_demo.py</span>
+          <span>k-means · n=3</span>
+        </div>
+        <canvas id="clusterCanvas"></canvas>
+        <div class="cluster-caption">unlabeled data → structure, in real time</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">Experience</div>
+        <h2 class="section-title">Where I've been working</h2>
+        <p class="section-desc">Hands-on ML work, from pipeline to deployed interface.</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-date">Jun — Jul 2025</div>
+          <div>
+            <div class="timeline-role">Machine Learning Intern <span>· Internee.pk, Remote</span></div>
+            <p class="timeline-desc">
+              Worked across the full ML pipeline — model training to deployment. Shipped an AI-powered interview
+              question generator and a collaborative-filtering learning path recommender, both as interactive
+              Streamlit apps. Used the internship as a testbed to independently build four more applied ML tools
+              (skill-gap matching, sentiment classification, performance prediction, a RAG-based FAQ bot).
+            </p>
+            <div class="tag-row">
+              <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">scikit-learn</span><span class="tag">NLP</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Nov 2025 — Feb 2026</div>
+          <div>
+            <div class="timeline-role">Student Researcher <span>· University of Central Punjab</span></div>
+            <p class="timeline-desc">
+              Led a student research group writing an IEEE-formatted paper on blockchain as a tool for
+              information security.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Research</span><span class="tag">Blockchain</span><span class="tag">Security</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">Projects</div>
+        <h2 class="section-title">Things I've built</h2>
+        <p class="section-desc">Applied ML systems — most shipped as working Streamlit apps with real data behind them.</p>
+      </div>
+      <div class="filter-row" id="filterRow">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nlp">NLP</button>
+        <button class="filter-btn" data-filter="recsys">Recommenders</button>
+        <button class="filter-btn" data-filter="iot">IoT / Mobile</button>
+        <button class="filter-btn" data-filter="predict">Prediction</button>
+      </div>
+      <div class="project-grid" id="projectGrid">
+
+        <div class="card featured" data-cat="iot">
+          <div class="card-icon">FYP</div>
+          <div class="card-title">Digital Farmer Avatar</div>
+          <p class="card-desc">Final year project. IoT sensors feed live soil moisture, temperature, and humidity into a TensorFlow Lite model running on-device for offline plant disease detection, plus a context-aware recommendation engine.</p>
+          <div class="card-tags"><span class="card-tag">TFLite</span><span class="card-tag">IoT</span><span class="card-tag">Mobile</span></div>
+          <a href="#" class="card-link">View project →</a>
+        </div>
+
+        <div class="card" data-cat="nlp">
+          <div class="card-media">
+            <video class="card-video" muted loop playsinline preload="metadata" poster="videos/thumbs/internship-chatbot.jpg">
+              <source src="videos/internship-chatbot.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-title">Internship Support FAQ Bot</div>
+          <p class="card-desc">Retrieval-augmented FAQ assistant. Retrieves answers with source references from a structured dataset and collects feedback to improve coverage over time.</p>
+          <div class="card-tags"><span class="card-tag">ChromaDB</span><span class="card-tag">Sentence-Transformers</span></div>
+          <a href="https://github.com/awaiss0629/internship-chatbot" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="nlp">
+          <div class="card-media">
+            <video class="card-video" muted loop playsinline preload="metadata" poster="videos/thumbs/skill-gap-analyzer.jpg">
+              <source src="videos/skill-gap-analyzer.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-title">Skill Gap Analyzer</div>
+          <p class="card-desc">Matches interns to roles via cosine similarity over TF-IDF vectors, discovers demand themes with K-Means clustering, and flags missing skills per best-fit role.</p>
+          <div class="card-tags"><span class="card-tag">scikit-learn</span><span class="card-tag">K-Means</span></div>
+          <a href="https://github.com/awaiss0629/skill-gap-analyzer" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="nlp">
+          <div class="card-media">
+            <video class="card-video" muted loop playsinline preload="metadata" poster="videos/thumbs/interview-question-generator.jpg">
+              <source src="videos/interview-question-generator.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-title">AI Interview Question Generator</div>
+          <p class="card-desc">Generates role- and skill-level-specific technical and behavioral interview questions from job descriptions and candidate profiles.</p>
+          <div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">Streamlit</span></div>
+          <a href="https://github.com/awaiss0629/ai-interview-question-generator" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="recsys">
+          <div class="card-media">
+            <video class="card-video" muted loop playsinline preload="metadata" poster="videos/thumbs/learning-path-recommender.jpg">
+              <source src="videos/learning-path-recommender.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-title">Learning Path Recommender</div>
+          <p class="card-desc">Collaborative-filtering recommendation engine using matrix factorization, with cold-start handling via popularity and content-based fallbacks.</p>
+          <div class="card-tags"><span class="card-tag">NMF</span><span class="card-tag">Recsys</span></div>
+          <a href="#" class="card-link">View project →</a>
+        </div>
+
+        <div class="card" data-cat="predict">
+          <div class="card-media">
+            <video class="card-video" muted loop playsinline preload="metadata" poster="videos/thumbs/performance-predictor.jpg">
+              <source src="videos/performance-predictor.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-title">Internship Performance Predictor</div>
+          <p class="card-desc">Classifies interns into performance tiers from attendance, task completion time, and feedback signals. R² ~0.94 on held-out data.</p>
+          <div class="card-tags"><span class="card-tag">Regression</span><span class="card-tag">pandas</span></div>
+          <a href="https://github.com/awaiss0629/Internship-Performance" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="nlp">
+          <div class="card-media">
+            <video class="card-video" muted loop playsinline preload="metadata" poster="videos/thumbs/feedback-sentiment.jpg">
+              <source src="videos/feedback-sentiment.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card-title">Internship Feedback Classifier</div>
+          <p class="card-desc">Classifies feedback sentiment with TF-IDF + Logistic Regression, surfacing accuracy, confusion matrix, and the key phrases driving satisfaction or concern.</p>
+          <div class="card-tags"><span class="card-tag">TF-IDF</span><span class="card-tag">Logistic Regression</span></div>
+          <a href="#" class="card-link">View project →</a>
+        </div>
+
+        <div class="card" data-cat="predict">
+          <div class="card-icon">Med</div>
+          <div class="card-title">Diabetes Predictor AI</div>
+          <p class="card-desc">Predicts diabetes risk from patient health metrics through a trained classifier, deployed as an interactive Streamlit interface.</p>
+          <div class="card-tags"><span class="card-tag">scikit-learn</span><span class="card-tag">Streamlit</span></div>
+          <a href="https://github.com/awaiss0629/diabetes-predictor-ai" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="iot">
+          <div class="card-icon">📱</div>
+          <div class="card-title">Fitia — Diet Helper</div>
+          <p class="card-desc">Native Android app giving users daily nutrition advice — calorie tracking, meal planning, and macro breakdown — built ground-up with Java and XML layouts.</p>
+          <div class="card-tags"><span class="card-tag">Java</span><span class="card-tag">Android XML</span><span class="card-tag">Nutrition</span></div>
+          <a href="https://github.com/awaiss0629/Fitia" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+        <div class="card" data-cat="predict">
+          <div class="card-icon">BI</div>
+          <div class="card-title">Sales Dashboard</div>
+          <p class="card-desc">Interactive dashboard analyzing PS4 game sales data, built and iterated on both inside and outside Streamlit.</p>
+          <div class="card-tags"><span class="card-tag">pandas</span><span class="card-tag">Dashboards</span></div>
+          <a href="https://github.com/awaiss0629/BigDataProject" class="card-link" target="_blank" rel="noopener">View on GitHub →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">Research</div>
+        <h2 class="section-title">Published work</h2>
+      </div>
+      <div class="research-grid">
+        <div class="research-card">
+          <div class="research-icon">📄</div>
+          <div>
+            <div class="research-title">Blockchain as a Tool for Information Security</div>
+            <div class="research-meta">IEEE-formatted paper · University of Central Punjab · Nov 2025 – Feb 2026</div>
+            <p class="research-desc">Led a student research group examining how blockchain's structural properties — immutability, distributed consensus — can be applied to information security problems.</p>
+          </div>
+        </div>
+        <div class="research-card">
+          <div class="research-icon">📄</div>
+          <div>
+            <div class="research-title">Blockchain-Based Secure Authentication for IoT Networks: A Comprehensive Decentralized Framework</div>
+            <div class="research-meta">IEEE-formatted paper · University of Central Punjab</div>
+            <p class="research-desc">Proposes a decentralized authentication framework for IoT networks built on blockchain, addressing device identity and trust without relying on a central authority.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="toolkit">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">Toolkit</div>
+        <h2 class="section-title">What I work with</h2>
+      </div>
+      <div class="toolkit-grid">
+        <div class="toolkit-col">
+          <h3>Machine Learning</h3>
+          <ul class="toolkit-list">
+            <li>Python</li><li>scikit-learn</li><li>TensorFlow / TFLite</li><li>Recommender Systems</li><li>Prompt Engineering</li>
+          </ul>
+        </div>
+        <div class="toolkit-col">
+          <h3>NLP & Retrieval</h3>
+          <ul class="toolkit-list">
+            <li>TF-IDF & embeddings</li><li>Sentence-Transformers</li><li>ChromaDB / RAG</li><li>K-Means clustering</li>
+          </ul>
+        </div>
+        <div class="toolkit-col">
+          <h3>Shipping</h3>
+          <ul class="toolkit-list">
+            <li>Streamlit</li><li>IoT integration</li><li>pandas / NumPy</li><li>Git & GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <div class="wrap">
+      <div class="section-head" style="margin: 0 auto 20px; text-align: center;">
+        <div class="section-eyebrow">Contact</div>
+        <h2 class="section-title">Let's build something.</h2>
+        <p class="section-desc">Open to AI/ML development, applied data science, and full-stack AI application roles.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:aawais5680@gmail.com" class="contact-link">Email ↗</a>
+        <a href="tel:+923217598228" class="contact-link">+92 321 7598228</a>
+        <a href="https://www.linkedin.com/in/awais-ahmad-828520377/" class="contact-link" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/awaiss0629" class="contact-link" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>© 2026 Awais Ahmad — Built with data, not templates.</footer>
+
+<script>
+  // ---- Clustering canvas signature animation ----
+  const canvas = document.getElementById('clusterCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    W = canvas.width = rect.width * devicePixelRatio;
+    H = canvas.height = 280 * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+  resize();
+  window.addEventListener('resize', () => { ctx.setTransform(1,0,0,1,0,0); resize(); });
+
+  const COLORS = ['#2F6FED', '#F2A93B', '#10182B'];
+  const N = 60;
+  const w = () => canvas.getBoundingClientRect().width;
+  const h = 280;
+
+  let centers = [
+    { x: w()*0.25, y: h*0.3 },
+    { x: w()*0.7, y: h*0.35 },
+    { x: w()*0.45, y: h*0.75 }
+  ];
+  let points = [];
+  for (let i=0;i<N;i++){
+    points.push({ x: Math.random()*w(), y: Math.random()*h, cluster: i%3, vx:0, vy:0 });
+  }
+
+  let t = 0;
+  function animate() {
+    t += 0.008;
+    ctx.clearRect(0,0,w(),h);
+
+    // drifting centers
+    centers[0].x = w()*0.25 + Math.sin(t)*30;
+    centers[0].y = h*0.3 + Math.cos(t*0.8)*20;
+    centers[1].x = w()*0.7 + Math.cos(t*0.6)*25;
+    centers[1].y = h*0.35 + Math.sin(t*0.9)*18;
+    centers[2].x = w()*0.45 + Math.sin(t*0.7)*22;
+    centers[2].y = h*0.75 + Math.cos(t*0.5)*15;
+
+    // reassign + move points toward nearest center occasionally
+    points.forEach(p => {
+      let best = 0, bestD = Infinity;
+      centers.forEach((c,i) => {
+        const d = (p.x-c.x)**2 + (p.y-c.y)**2;
+        if (d < bestD) { bestD = d; best = i; }
+      });
+      p.cluster = best;
+      const c = centers[best];
+      p.vx += (c.x - p.x) * 0.0006;
+      p.vy += (c.y - p.y) * 0.0006;
+      p.vx *= 0.96; p.vy *= 0.96;
+      p.x += p.vx; p.y += p.vy;
+    });
+
+    // draw connecting lines to centers (faint)
+    points.forEach(p => {
+      const c = centers[p.cluster];
+      ctx.strokeStyle = COLORS[p.cluster] + '18';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(c.x, c.y);
+      ctx.stroke();
+    });
+
+    // draw points
+    points.forEach(p => {
+      ctx.fillStyle = COLORS[p.cluster];
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
+      ctx.fill();
+    });
+
+    // draw centers
+    centers.forEach((c,i) => {
+      ctx.fillStyle = COLORS[i];
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, 6, 0, Math.PI*2);
+      ctx.fill();
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  // ---- Project filter ----
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('#projectGrid .card');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  // ---- Video preview cards: hover to play (desktop), in-view to play (mobile) ----
+  const videoCards = document.querySelectorAll('.card-media');
+  videoCards.forEach(media => {
+    const video = media.querySelector('video');
+    if (!video) return;
+
+    media.addEventListener('mouseenter', () => {
+      video.play().catch(() => {});
+      media.classList.add('playing');
+    });
+    media.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+      media.classList.remove('playing');
+    });
+  });
+
+  // Mobile: play when scrolled into view, pause when out of view
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target.querySelector('video');
+        const media = entry.target;
+        if (!video) return;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+          media.classList.add('playing');
+        } else {
+          video.pause();
+          media.classList.remove('playing');
+        }
+      });
+    }, { threshold: 0.6 });
+    videoCards.forEach(m => io.observe(m));
+  }
+</script>
+
+</body>
+</html>

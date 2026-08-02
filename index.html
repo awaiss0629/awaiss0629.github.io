@@ -242,6 +242,19 @@
   .research-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 12px; }
   .research-desc { color: var(--muted); font-size: 0.94rem; }
 
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 700px) { .cert-grid { grid-template-columns: 1fr; } }
+  .cert-card {
+    background: var(--paper-raised); border: 1px solid var(--line); border-radius: 12px;
+    padding: 18px 20px; display: flex; align-items: center; gap: 14px;
+  }
+  .cert-badge {
+    width: 38px; height: 38px; border-radius: 9px; background: var(--signal-soft);
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0;
+  }
+  .cert-name { font-size: 0.95rem; font-weight: 600; }
+  .cert-issuer { font-family: var(--font-mono); font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+
   /* ---------- Toolkit ---------- */
   .toolkit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   @media (max-width: 760px) { .toolkit-grid { grid-template-columns: 1fr; } }
@@ -273,6 +286,7 @@
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#research">Research</a>
+      <a href="#certifications">Certifications</a>
       <a href="#toolkit">Toolkit</a>
       <a href="#contact">Contact</a>
     </div>
@@ -318,7 +332,7 @@
       <div class="section-head">
         <div class="section-eyebrow">Experience</div>
         <h2 class="section-title">Where I've been working</h2>
-        <p class="section-desc">Hands-on ML work, from pipeline to deployed interface.</p>
+        <p class="section-desc">Hands-on ML and data work, from pipeline to deployed interface.</p>
       </div>
       <div class="timeline">
         <div class="timeline-item">
@@ -333,6 +347,19 @@
             </p>
             <div class="tag-row">
               <span class="tag">Python</span><span class="tag">Streamlit</span><span class="tag">scikit-learn</span><span class="tag">NLP</span>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Sep — Oct 2025</div>
+          <div>
+            <div class="timeline-role">Data Visualization Intern <span>· Excelerate, Remote</span></div>
+            <p class="timeline-desc">
+              Cleaned and structured raw datasets in PostgreSQL, then built dashboards surfacing key trends
+              for stakeholder reporting, translating raw metrics into clear, decision-ready visualizations.
+            </p>
+            <div class="tag-row">
+              <span class="tag">PostgreSQL</span><span class="tag">Data Visualization</span><span class="tag">Dashboards</span>
             </div>
           </div>
         </div>
@@ -501,6 +528,45 @@
             <div class="research-title">Blockchain-Based Secure Authentication for IoT Networks: A Comprehensive Decentralized Framework</div>
             <div class="research-meta">IEEE-formatted paper · University of Central Punjab</div>
             <p class="research-desc">Proposes a decentralized authentication framework for IoT networks built on blockchain, addressing device identity and trust without relying on a central authority.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">Certifications</div>
+        <h2 class="section-title">Credentials</h2>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-badge">☁️</div>
+          <div>
+            <div class="cert-name">Microsoft Certified: Azure AI Fundamentals</div>
+            <div class="cert-issuer">Microsoft</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">🧠</div>
+          <div>
+            <div class="cert-name">AI for Everyone</div>
+            <div class="cert-issuer">DeepLearning.AI, Coursera</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">🅰️</div>
+          <div>
+            <div class="cert-name">AWS Academy Cloud Foundations</div>
+            <div class="cert-issuer">AWS Academy</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-badge">💬</div>
+          <div>
+            <div class="cert-name">Prompt Engineering for Developers</div>
+            <div class="cert-issuer">DeepLearning.AI</div>
           </div>
         </div>
       </div>

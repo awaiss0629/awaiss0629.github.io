@@ -639,6 +639,13 @@
 
 </main>
 
+<div class="lightbox" id="videoLightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close video">✕</button>
+    <video id="lightboxVideo" controls playsinline></video>
+  </div>
+</div>
+
 <footer>© 2026 Awais Ahmad — Built with data, not templates.</footer>
 
 <script>
@@ -818,13 +825,6 @@
     videoCards.forEach(m => io.observe(m));
   }
 </script>
-
-<div class="lightbox" id="videoLightbox">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" id="lightboxClose" aria-label="Close video">✕</button>
-    <video id="lightboxVideo" controls playsinline></video>
-  </div>
-</div>
 
 </body>
 </html>

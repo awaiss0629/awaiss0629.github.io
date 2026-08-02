@@ -225,6 +225,25 @@
     pointer-events: none;
   }
   .card-media.playing::after { opacity: 0; }
+  .card-media { cursor: pointer; }
+
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(16,24,43,0.85); z-index: 200;
+    display: none; align-items: center; justify-content: center; padding: 40px;
+    backdrop-filter: blur(4px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner {
+    position: relative; width: 100%; max-width: 820px; background: #000;
+    border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .lightbox-inner video { width: 100%; max-height: 80vh; display: block; }
+  .lightbox-close {
+    position: absolute; top: -44px; right: 0; background: transparent; border: none;
+    color: #fff; font-size: 1.8rem; cursor: pointer; line-height: 1; padding: 6px 10px;
+    font-family: var(--font-mono);
+  }
+  .lightbox-close:hover { color: var(--cluster); }
 
   /* ---------- Research ---------- */
   .research-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -731,20 +750,52 @@
     });
   });
 
-  // ---- Video preview cards: hover to play (desktop), in-view to play (mobile) ----
+  // ---- Video preview cards: click to open lightbox, hover to preview (desktop), in-view to play (mobile) ----
   const videoCards = document.querySelectorAll('.card-media');
+  const lightbox = document.getElementById('videoLightbox');
+  const lightboxVideo = document.getElementById('lightboxVideo');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(srcUrl) {
+    lightboxVideo.src = srcUrl;
+    lightbox.classList.add('open');
+    lightboxVideo.play().catch(() => {});
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxVideo.pause();
+    lightboxVideo.removeAttribute('src');
+    lightboxVideo.load();
+    document.body.style.overflow = '';
+  }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
   videoCards.forEach(media => {
     const video = media.querySelector('video');
     if (!video) return;
+    const sourceEl = video.querySelector('source');
+    const fullSrc = sourceEl ? sourceEl.src : video.src;
+    media.style.cursor = 'pointer';
+
+    media.addEventListener('click', () => {
+      openLightbox(fullSrc);
+    });
 
     media.addEventListener('mouseenter', () => {
-      video.play().catch(() => {});
+      video.play().catch((err) => console.warn('Preview failed to play:', video.currentSrc, err));
       media.classList.add('playing');
     });
     media.addEventListener('mouseleave', () => {
       video.pause();
       video.currentTime = 0;
       media.classList.remove('playing');
+    });
+
+    video.addEventListener('error', () => {
+      console.error('Video failed to load:', video.currentSrc || sourceEl?.src);
     });
   });
 
@@ -767,6 +818,13 @@
     videoCards.forEach(m => io.observe(m));
   }
 </script>
+
+<div class="lightbox" id="videoLightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close video">✕</button>
+    <video id="lightboxVideo" controls playsinline></video>
+  </div>
+</div>
 
 </body>
 </html>
